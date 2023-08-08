@@ -57,10 +57,9 @@ async function pullSingleCard() {
 */
 async function start(){
   await fetchAndSetDeck();
+  $(".draw-card-btn").on("click", pullSingleCard);
 }
 
-
-$(".draw-card-btn").on("click", pullSingleCard);
 
 start();
 
