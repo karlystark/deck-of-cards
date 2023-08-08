@@ -31,21 +31,20 @@ async function pullSingleCard() {
   const cardImg = resp.data.cards[0].image;
   const cardSuit = resp.data.cards[0].suit;
   const cardValue = resp.data.cards[0].value;
-  const cardCode = resp.data.cards[0].code;
 
   const randRotation = Math.floor(Math.random() * 100) -50;
   const randTranslate = Math.floor(Math.random() * 50) - 25;
 
   $(".card-canvas").append(
-    `<img src="${cardImg}" alt="${cardValue} of ${cardSuit}" class="card card-${cardCode}">`
-  );
-
-  $(`.card-${cardCode}`).css(
-    "transform",
-    `rotate(${randRotation}deg)
-    translateY(${randTranslate}px)
-    translateX(${randTranslate}px)`
-  );
+    $("<img>", {
+      src: cardImg,
+      css: { transform:
+      `rotate(${randRotation}deg)
+      translateY(${randTranslate}px)
+      translateX(${randTranslate}px)`},
+      alt: `${cardValue} of ${cardSuit}`,
+      class: "card"
+    }));
 
   if (resp.data.remaining === 0) {
      $(".draw-card-btn").text("REFRESH TO SHUFFLE DECK");
